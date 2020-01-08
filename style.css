@@ -1,0 +1,29 @@
+body {
+  color: black;;
+}
+
+#flexContainer {
+  display: flex;
+  align-items: flex-start;;
+  flex-basis: auto;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: bolder;
+}
+.overallCards {
+  display: flex;
+  flex-flow: wrap;
+  flex-basis: auto;
+  flex-direction: column;
+}
+.dataCard {
+  display: flex;
+  flex-basis: auto;
+  flex-flow: wrap;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 5px;
+}
