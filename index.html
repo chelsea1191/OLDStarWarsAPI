@@ -11,43 +11,76 @@
         <script src='script.js' defer></script>
 </head>
 <body>
+
   <div>
     <h1 class="title">The Starwars Dashboard</h1>
   </div>
+
   <div id="flexContainer">
+
     <div>
       <div>
         <h4 class="title">PEOPLE</h4>
+        <form>
+          <div class="form-group" style="margin: 10px;" onkeyup="search('people', 'peopleSearch')">
+            <input class="form-control" id="peopleSearch">
+          </div>
+        </form>
       </div>
+      <div class="viewingPeople"></div>
       <div>
-        <ul id="people" class="overallCards" style="list-style: none;">
+        <ul id="people" class="overallCards">
         </ul>
       </div>
     </div>
+
+
     <div>
       <div>
         <h4 class="title">FILMS</h4>
+        <form>
+          <div class="form-group" style="margin: 10px;" onkeyup="search('films', 'filmSearch')">
+            <input class="form-control" id="filmSearch">
+          </div>
+        </form>
       </div>
+      <div class="viewingFilms"></div>
       <div>
-        <ul id="films" class="overallCards" style="list-style: none;">
+        <ul id="films" class="overallCards">
         </ul>
       </div>
     </div>
+
+
     <div>
       <div>
-        <h4 class="title" class="overallCards">STARSHIPS</h4>
+        <h4 class="title">STARSHIPS</h4>
+        <form>
+          <div class="form-group" style="margin: 10px;" onkeyup="search('starships', 'starshipSearch')">
+            <input class="form-control" id="starshipSearch" >
+          </div>
+        </form>
       </div>
+      <div class="viewingStarships"></div>
       <div>
-        <ul id="starships" class="overallCards" style="list-style: none;">
+        <ul id="starships" class="overallCards">
         </ul>
       </div>
     </div>
+
+
     <div>
       <div>
         <h4 class="title">VEHICLES</h4>
+        <form>
+          <div class="form-group" style="margin: 10px;"  onkeyup="search('vehicles', 'vehicleSearch')">
+            <input class="form-control" id="vehicleSearch">
+          </div>
+        </form>
       </div>
+      <div class="viewingVehicles"></div>
       <div>
-        <ul id="vehicles" class="overallCards" style="list-style: none;">
+        <ul id="vehicles" class="overallCards">
         </ul>
       </div>
     </div>

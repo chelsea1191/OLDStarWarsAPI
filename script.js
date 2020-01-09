@@ -1,93 +1,107 @@
-//console.log("JS connected")
 
 const peopleAPI = "http://star-cors.herokuapp.com/people"
 const filmsAPI = "http://star-cors.herokuapp.com/films"
 const starshipsAPI = "http://star-cors.herokuapp.com/starships"
 const vehiclesAPI = "http://star-cors.herokuapp.com/vehicles"
 
+
   const getPeople = async () => {
-    //console.log("made it to getPeople")
     const response = await fetch(peopleAPI);
     return await response.json();
   };
-  //getPeople()
 
   const getFilms = async () => {
-    //console.log("made it to getFilms")
     const response = await fetch(filmsAPI);
     return await response.json();
   };
-  //getFilms()
 
   const getStarships = async () => {
-    //console.log("made it to getStarships")
     const response = await fetch(starshipsAPI);
     return await response.json();
   };
-  //getStarships()
 
   const getVehicles = async () => {
-    //console.log("made it to getVehicles")
     const response = await fetch(vehiclesAPI);
     return await response.json();
   };
-  //getVehicles()
 
   const peopleCards = document.querySelector("#people")
   const filmCards = document.querySelector("#films")
   const starshipsCards = document.querySelector("#starships")
   const vehicleCards = document.querySelector("#vehicles")
 
+  const viewPeople = document.querySelector(".viewingPeople")
+  const viewFilms = document.querySelector(".viewingFilms")
+  const viewStarships = document.querySelector(".viewingStarships")
+  const viewVehicles = document.querySelector(".viewingVehicles")
 
   const renderPeople = () => {
     getPeople().then((data) => {
-      //console.log(data.results)
+      viewPeople.innerHTML = "Viewing " + "HERE" + " out of " + data.count + " people"
       for (let name in data.results) {
-        //console.log(data.results[name].name)
         let finalName = data.results[name].name
-        //console.log(cards)
         let numberOfFilms = data.results[name].films.length
-        peopleCards.innerHTML += `<div class="dataCard"><li class="title">` + finalName + `</li><p>Appeared in ` + numberOfFilms + ` films.</p></div>`;
+        peopleCards.innerHTML += `<div class="dataCard m-2"><li class="title">` + finalName + `</li><p><br>Appeared in ` + numberOfFilms + ` films.</p></div>`;
       }
     })
   }
 
   const renderFilms = () => {
     getFilms().then((data) => {
-      //console.log(data.results)
+      viewFilms.innerHTML = "Viewing " + data.results.length + " out of " + data.count + " people"
       for (let i in data.results) {
-        //console.log(data.results[name].title)
         let finalTitle = data.results[i].title
         let date = data.results[i].release_date
-        filmCards.innerHTML += `<div class="dataCard"><li class="title">` + finalTitle + `</li><p>Released on: ` + date + `</p></div>`;
+        filmCards.innerHTML += `<div class="dataCard m-2"><li class="title">` + finalTitle + `</li><p><br>Released on: ` + date + `</p></div>`;
       }
     })
   }
 
   const renderStarships = () => {
     getStarships().then((data) => {
-      //console.log(data.results)
+      viewStarships.innerHTML = "Viewing " + data.results.length + " out of " + data.count + " people"
       for (let i in data.results) {
-        //console.log(data.results[i].name)
         let finalStarships = data.results[i].name
         let starshipClass = data.results[i].starship_class
-        starshipsCards.innerHTML += `<div class="dataCard"><li class="title">` + finalStarships + `</li><p>` + starshipClass + `</p></div>`;
+        starshipsCards.innerHTML += `<div class="dataCard m-2"><li class="title">` + finalStarships + `</li><p><br>` + starshipClass + `</p></div>`;
       }
     })
   }
 
   const renderVehicles = () => {
     getVehicles().then((data) => {
-      //console.log(data.results)
+      viewVehicles.innerHTML = "Viewing " + data.results.length + " out of " + data.count + " people"
       for (let i in data.results) {
-        //console.log(data.results[i].name)
         let finalVehicle = data.results[i].name
         let manu = data.results[i].manufacturer
-        vehicleCards.innerHTML += `<div class="dataCard"><li class="title">` + finalVehicle + `</li><p>Manufactured By ` + manu + `</p></div>`;
+        vehicleCards.innerHTML += `<div class="dataCard m-2"><li class="title">` + finalVehicle + `</li><p><br>Manufactured by ` + manu + `</p></div>`;
       }
     })
   }
+
   renderPeople()
   renderStarships()
   renderVehicles()
   renderFilms()
+
+  function search(id, inputId) {
+    console.log(id)
+    const input = document.getElementById(inputId)
+    filter = input.value.toUpperCase()
+
+    let ul = document.getElementById(id);
+    let li = ul.getElementsByTagName("li");
+    let dataCard = ul.getElementsByClassName("dataCard")
+    let count = 0;
+
+    for (let i = 0; i < li.length; i++) {
+      let peopleName = li[i].innerHTML.toUpperCase()
+      if (peopleName.includes(filter)) {
+        dataCard[i].style.display = "";
+        count++
+      } else {
+        dataCard[i].style.display = "none"
+      }
+    }
+    console.log(count)
+  }
